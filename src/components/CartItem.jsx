@@ -13,7 +13,8 @@ const CartItem = ({ cartItem }) => {
     dispatch(editItem({ cartID, amount: parseInt(e.target.value) }));
   };
 
-  const { cartID, title, price, image, amount, company, productColor } =
+  const price = Math.ceil(Math.random() * 100) * 1000;
+  const { cartID, title, image, amount, company, productColor } =
     cartItem;
 
   return (
@@ -69,7 +70,7 @@ const CartItem = ({ cartItem }) => {
         </button>
       </div>
       {/* PRICE */}
-      <p className='font-medium sm:ml-auto'>{formatPrice(price)}</p>
+      <p className='font-medium sm:ml-auto'>{price} DA</p>
     </article>
   );
 };

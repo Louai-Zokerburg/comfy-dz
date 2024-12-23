@@ -13,19 +13,19 @@ const singleProductQuery = (id) => {
 
 export const loader =
   (queryClient) =>
-  async ({ params }) => {
-    const response = await queryClient.ensureQueryData(
-      singleProductQuery(params.id)
-    );
+    async ({ params }) => {
+      const response = await queryClient.ensureQueryData(
+        singleProductQuery(params.id)
+      );
 
-    return { product: response.data.data };
-  };
+      return { product: response.data.data };
+    };
 
 const SingleProduct = () => {
   const { product } = useLoaderData();
   const { image, title, description, colors, company, price } =
     product.attributes;
-  const dollarsAmount = formatPrice(price);
+  const dollarsAmount = Math.ceil(Math.random() * 100) * 1000;
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 
@@ -76,7 +76,7 @@ const SingleProduct = () => {
           <h4 className='text-xl text-neutral-content font-bold mt-2'>
             {company}
           </h4>
-          <p className='mt-3 text-3xl'>{dollarsAmount}</p>
+          <p className='mt-3 text-3xl'>{dollarsAmount} DA</p>
           <p className='mt-6 leading-8'>{description}</p>
           {/* COLORS */}
           <div className='mt-6'>
@@ -89,9 +89,8 @@ const SingleProduct = () => {
                   <button
                     key={color}
                     type='button'
-                    className={`badge w-6 h-6 mr-2 ${
-                      color === productColor && 'border-2 border-secondary'
-                    }`}
+                    className={`badge w-6 h-6 mr-2 ${color === productColor && 'border-2 border-secondary'
+                      }`}
                     style={{ backgroundColor: color }}
                     onClick={() => setProductColor(color)}
                   ></button>

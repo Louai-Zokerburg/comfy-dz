@@ -8,7 +8,7 @@ const ProductsList = () => {
     <div className='mt-12 grid gap-y-8'>
       {products.map((product) => {
         const { title, price, image, company } = product.attributes;
-        const dollarAmount = formatPrice(price);
+        const dollarAmount = Math.ceil(Math.random() * 100) * 1000;
         return (
           <Link
             key={product.id}
@@ -27,7 +27,7 @@ const ProductsList = () => {
               </h4>
             </div>
             <p className='font-medium ml-0 sm:ml-auto text-lg'>
-              {dollarAmount}
+              {dollarAmount} DA
             </p>
           </Link>
         );
